@@ -1,7 +1,7 @@
 #include "GeneticAlgorithm.h"
 
 
-// TODO: may want to try a different crossover algorithm??
+
 void GeneticAlgorithm::crossover(Game& g1, Game& g2) {
     double r = ((double) rand() / RAND_MAX);
     if (r > crossoverRate) return;
@@ -42,15 +42,11 @@ void GeneticAlgorithm::Step(std::vector<Game>& pop) {
     std::sort(pop.begin(), pop.end());
     size_t popsize = pop.size();
 
-    //TODO: calculate stats here from previous generation
     bestGenome = pop.back();
 
-    // kill off percentage of population
     pop.erase(pop.begin(), pop.begin() + floor(popsize * ELITISM_RATE));
 
-    // repopulate
-    // going to do roulette wheel selection method
-    // first find total fitness
+ 
     double totalFitness = 0;
     int reducedPopSize = pop.size();
     for (int i=0; i<reducedPopSize; ++i) {
